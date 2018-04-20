@@ -43,12 +43,18 @@
     <div class="container col-md-4 col-md-offset-4 my-4">
         <h4>Vooropleiding</h4>
         <label for="Opleiding">Opleiding*</label>
-        <input type="text" class="form-control" id="Opleiding" placeholder="Vul je opleiding in...">
+        <select class="form-control" id="Opleiding">
+            <option disabled selected value> -- Kies een optie --</option>
+            <option>VWO</option>
+            <option>HAVO</option>
+            <option>MBO</option>
+            <option>Anders</option></select>
     </div>
 
     <div class="container col-md-4 col-md-offset-4 my-4">
         <label for="verwachtAfstudeerJaar">(verwacht) Afstudeerjaar*</label>
         <select class="form-control" id="verwachtAfstudeerJaar">
+            <option disabled selected value> -- Kies een optie --</option>
             <option>2020</option>
             <option>2019</option>
             <option>2018</option>
@@ -67,7 +73,7 @@
 
 <form>
     <div class="container col-md-4 col-md-offset-4 my-4">
-        <button type="submit" class="btn btn-dark">Verzend</button>
+        <button type="submit" class="btn btn-dark">Verzenden</button>
 
 </form>
 
