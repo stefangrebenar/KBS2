@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+
 
 <head>
 
@@ -7,7 +7,11 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.css">
-    <?php include ("header.php");
+    <?php
+
+    include ("header.php");
+    include ("dbconnect.php");
+//    include ("send_form_email.php");
 
     ?>
 
@@ -16,28 +20,21 @@
 <body>
 
 <?php
-$name = $email = $achternaam = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = test_input($_POST["Voornaam"]);
-    $email = test_input($_POST["email"]);
-    $achternaam = test_input($_POST["Achternaam"]);
+if(isset($_POST['verzend'])) {
+    $voornaam = $_POST['voornaam'];
+    $achternaam = $_POST['achternaam'];
+    $email = $_POST['email'];
 
 }
 
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form method="post" action="redirectAanvraag.php">
     <div class="container col-md-4 col-md-offset-4 my-4">
         <h4>Persoonlijke gegevens</h4>
-        <label for="Voornaam">Voornaam*</label>
-        <input type="text" class="form-control" id="Voornaam" placeholder="Vul voornaam in..." required>
+        <label for="voornaam">Voornaam*</label>
+        <input type="text" class="form-control" id="voornaam" name="voornaam" placeholder="Vul voornaam in..." required>
 
     </div>
 
@@ -47,13 +44,13 @@ function test_input($data) {
     </div>
 
     <div class="container col-md-4 col-md-offset-4 my-4">
-        <label for="Achternaam">Achternaam*</label>
-        <input type="text" class="form-control" id="Achternaam" placeholder="Vul achternaam in..." required>
+        <label for="achternaam">Achternaam*</label>
+        <input type="text" class="form-control" id="achternaam" name="achternaam" placeholder="Vul achternaam in..." required>
     </div>
 
     <div class="container col-md-4 col-md-offset-4 my-4">
         <label for="email">E-Mailadres*</label>
-        <input type="email" class="form-control" id="email" placeholder="Vul e-mailadres in..." required>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Vul e-mailadres in..." required>
     </div>
 
 
@@ -67,7 +64,7 @@ function test_input($data) {
             <option>VWO</option>
             <option>HAVO</option>
             <option>MBO</option>
-            <option>Anders</option></select>
+        </select>
     </div>
 
     <div class="container col-md-4 col-md-offset-4 my-4">
@@ -92,8 +89,8 @@ function test_input($data) {
 
 
     <div class="container col-md-4 col-md-offset-4 my-4">
-        <button type="submit" class="btn btn-dark" id="Verzend">Verzenden</button>
-
+        <button type="submit" class="btn btn-dark" id="verzend">Verzenden</button>
+    </div>
 </form>
 
 </body>
