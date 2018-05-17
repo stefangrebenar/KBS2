@@ -45,7 +45,7 @@ if (isset($_REQUEST['email'])) {
     $body .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
     $body .= '<p style="color:#3366FF;font-size:14px;">Beste' . ' ' . $naam . ', </p>';
     $body .= '<p style="color:#3366FF;font-size:14px;">Leuk dat je geïnteresseerd bent in een opleiding bij Windesheim! We hebben je brochure voor je klaargezet.</p>';
-    $body .= '<p> <a href="">Klik hier voor je brochure!</a> </p>';
+    $body .= '<p> <a href="https://i.imgur.com/4MGdogb.jpg">Klik hier voor je brochure!</a> </p>';
     $body .= "</table>";
     $body .= "</body></html>";
 

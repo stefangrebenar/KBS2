@@ -24,8 +24,8 @@
 <!-- Page Content -->
 <br>
 <div class="container col-md-4 col-md-offset-4 my-4">
-<h1 class="my4 infoBox">U krijgt zo spoedig mogelijk uw Brochure!</h1>
-<p class="infoBox">Hou uw e-mail in de gaten.</p>
+<h1>U krijgt zo spoedig mogelijk uw Brochure!</h1>
+<p>Houd uw e-mail in de gaten.</p>
 </div>
 
 </body>
