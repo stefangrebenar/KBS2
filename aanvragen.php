@@ -16,10 +16,10 @@
 <body>
 
 <?php
-$name = $email = $achternaam = "";
+$naam = $email = $achternaam = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = test_input($_POST["Voornaam"]);
+    $naam = test_input($_POST["Voornaam"]);
     $email = test_input($_POST["email"]);
     $achternaam = test_input($_POST["Achternaam"]);
 
@@ -32,6 +32,32 @@ function test_input($data) {
     return $data;
 }
 ?>
+
+<?php
+
+if (isset($_REQUEST['email'])) {
+
+    $to = $email;
+    $subject = "Brochure";
+    $from = 'stefangrebenar@hotmail.com';
+    $body = '<html><body>';
+    $body .= '<img src="logo.png" alt="WindesheimLogo" /><br/>';
+    $body .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
+    $body .= '<p style="color:#3366FF;font-size:14px;">Beste' . ' ' . $naam . ', </p>';
+    $body .= '<p style="color:#3366FF;font-size:14px;">Leuk dat je geïnteresseerd bent in een opleiding bij Windesheim! We hebben je brochure voor je klaargezet.</p>';
+    $body .= '<p> <a href="">Klik hier voor je brochure!</a> </p>';
+    $body .= "</table>";
+    $body .= "</body></html>";
+
+    $headers = "Van: $from \r\n";
+    $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+
+        'X-Mailer: PHP/' . phpversion();
+
+    mail($to, $subject, $body, $headers);
+}
+?>
+
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <div class="container col-md-4 col-md-offset-4 my-4">
