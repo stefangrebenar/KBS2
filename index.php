@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.css">
     <?php include ("header.php");
-    include ("dbconnect.php");
+    include("include/dbconnect.php");
 
     ?>
 
@@ -52,13 +52,50 @@ if (isset($_REQUEST['email'])) {
     $body .= "</table>";
     $body .= "</body></html>";
 
+    $headers = 'MIME-Version: 1.0' . "\r\n";
     $headers = "Van: $from \r\n";
+    $headers .= "Naar: $email\r\n";
     $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
 
         'X-Mailer: PHP/' . phpversion();
 
     mail($to, $subject, $body, $headers);
 }
+?>
+
+<?php
+
+if (isset($_POST['verzend'])) {
+    try {
+
+        $achternaam = $_POST['Achternaam'];
+        $voornaam = $_POST['Voornaam'];
+        $email = $_POST['email'];
+
+        $tussenvoegsel = $_POST['Tussenvoegsel'];
+        $opleiding = $_POST['Opleiding'];
+        $verwachtAfstudeerJaar = $_POST['verwachtAfstudeerJaar'];
+
+        $sql = /** @lang SQL */
+            "INSERT INTO form (Voornaam, Tussenvoegsel, Achternaam, Email, Opleiding, Afstudeerjaar) VALUES (:Voornaam, :Tussenvoegsel, :Achternaam, :Email, :Opleiding, :Afstudeerjaar)";
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindValue(':Voornaam', $voornaam, PDO::PARAM_INT);
+        $stmt->bindValue(':Tussenvoegsel', $tussenvoegsel, PDO::PARAM_STR);
+        $stmt->bindValue(':Achternaam', $achternaam, PDO::PARAM_STR);
+        $stmt->bindValue(':Email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':Opleiding', $opleiding, PDO::PARAM_INT);
+        $stmt->bindValue(':verwachtAfstudeerJaar', $verwachtAfstudeerJaar, PDO::PARAM_INT);
+
+
+        $stmt->execute();
+
+    } catch (PDOException $e) {
+        print "Error! $e";
+    }
+}
+
 ?>
 
 <?php
