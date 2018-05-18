@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.css">
     <?php include ("header.php");
+    include ("dbconnect.php");
 
     ?>
 
@@ -15,10 +16,12 @@
 
 <body>
 
+
 <?php
 $naam = $email = $achternaam = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if(isset($_POST['Voornaam']) && trim($_POST['Voornaam'])!=''
+    && isset($_POST['email']) && trim($_POST['email'])!=''
+    && isset($_POST['Achternaam']) && trim($_POST['Achternaam'])!='') {
     $naam = test_input($_POST["Voornaam"]);
     $email = test_input($_POST["email"]);
     $achternaam = test_input($_POST["Achternaam"]);
@@ -58,8 +61,14 @@ if (isset($_REQUEST['email'])) {
 }
 ?>
 
+<?php
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+mysqli_close($conn);
+
+?>
+
+
+<form method="post" action="redirectAanvraag.php">
     <div class="container col-md-4 col-md-offset-4 my-4">
         <h4>Persoonlijke gegevens</h4>
         <label for="Voornaam">Voornaam*</label>
