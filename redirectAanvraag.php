@@ -1,10 +1,8 @@
+
+
 <!DOCTYPE html>
 <!---->
-<?php
-//if(($_POST["voornaam"]) == "" || ($_POST["achternaam"]) == "" || ($_POST["email"]) == "") {
-//    header("Location: " . substr($_SERVER["REQUEST_URI"], 0, -strlen("redirectAanvraag.php")) . "aanvragen.php");
-//}
-//?>
+
 
 
 <head>
